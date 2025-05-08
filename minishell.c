@@ -6,7 +6,7 @@
 /*   By: ikardi <ikardi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 13:10:06 by ikardi            #+#    #+#             */
-/*   Updated: 2025/05/08 14:05:47 by ikardi           ###   ########.fr       */
+/*   Updated: 2025/05/08 16:03:37 by ikardi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,17 @@ void	print_double_ptr(char **str)
 	}
 }
 
+void	print_env(struct passwd *env)
+{
+	printf("%s\n", env->pw_name);
+	printf("%s\n", env->pw_passwd);
+	printf("%d\n", (int)env->pw_uid);
+	printf("%d\n", (int)env->pw_gid);
+	printf("%s\n", env->pw_gecos);
+	printf("%s\n", env->pw_dir);
+	printf("%s\n", env->pw_shell);
+}
+
 int main(int argc, char **argv, char **env)
 {
 	char *input;
@@ -38,6 +49,7 @@ int main(int argc, char **argv, char **env)
 		return (perror("UID not found in envirment\n"), 1);
 	pw = getpwuid((uid_t)ft_atoi(uid));
 	// print_double_ptr(env);
+	print_env(pw);
 	while (1)
 	{
 		input = readline(pw->pw_shell);
