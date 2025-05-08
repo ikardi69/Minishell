@@ -5,7 +5,11 @@ CFLAGS = -Wall -Wextra -Werror
 # Files
 NAME = minishell
 SRC = minishell.c \
-	ft_atoi.c
+	ft_atoi.c \
+	ft_strjoin.c \
+	ft_strdup.c \
+	ft_memcpy.c \
+	ft_strlen.c
 OBJ = $(SRC:.c=.o)
 
 # Readline linking
