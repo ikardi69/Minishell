@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikardi <ikardi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 13:10:06 by ikardi            #+#    #+#             */
-/*   Updated: 2025/05/08 16:03:37 by ikardi           ###   ########.fr       */
+/*   Updated: 2025/05/09 17:57:47 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,15 @@ int main(int argc, char **argv, char **env)
 	(void)argc;
 	(void)argv;
 	(void)env;
-	uid = getenv("LOGNAME");
-	if (!uid)
-		return (perror("UID not found in envirment\n"), 1);
-	pw = getpwuid((uid_t)ft_atoi(uid));
+	// uid = getenv("LOGNAME");
+	// if (!uid)
+	// 	return (perror("UID not found in envirment\n"), 1);
+	// pw = getpwuid((uid_t)ft_atoi(uid));
 	// print_double_ptr(env);
 	print_env(pw);
 	while (1)
 	{
-		input = readline(pw->pw_shell);
+		input = readline("Minishell --> : ");
 		if (!input)
 			break ;
 		else
