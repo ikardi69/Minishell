@@ -1,4 +1,4 @@
-#if !defined MINISHELL_H
+#ifndef MINISHELL_H
 #define MINISHELL_H
 
 # include <stdio.h>
@@ -10,10 +10,20 @@
 # include <unistd.h>
 # define LL_MAX 9223372036854775807LL
 
+typedef struct s_ptr
+{
+	void        *ptr;
+	struct s_ptr *next;
+}t_ptr;
+
 int	    ft_atoi(const char *str);
 size_t	ft_strlen(const char *s);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strdup(const char *s);
 void	*ft_memcpy(void *dest, const void *src, size_t n);
+t_ptr	*add_node(void *ptr);
+void    *ft_mall(t_ptr **head, ssize_t size);
+void	ft_lstadd_back(t_ptr **lst, t_ptr *new);
+void	ft_lstclear(t_ptr **lst, void (*del)(void*));
 
 #endif // MINISHELL_H
