@@ -6,7 +6,7 @@
 /*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 13:10:06 by ikardi            #+#    #+#             */
-/*   Updated: 2025/05/09 17:57:47 by mteffahi         ###   ########.fr       */
+/*   Updated: 2025/05/09 18:26:55 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,28 +35,50 @@ void	print_env(struct passwd *env)
 	printf("%s\n", env->pw_shell);
 }
 
+void	print_ptr(t_ptr **head)
+{
+	t_ptr	*tmp;
+
+	if (!*head)
+		return ;
+	tmp = *head;
+	while (tmp && tmp->next)
+	{
+		printf("%p\n", tmp->ptr);
+		tmp = tmp->next;
+	}
+}
+
 int main(int argc, char **argv, char **env)
 {
 	char *input;
-	char	*uid;
-	struct passwd *pw;
+	t_ptr	*head;
+	// char	*uid;
+	// struct passwd *pw;
 
 	(void)argc;
 	(void)argv;
-	(void)env;
+	head = NULL;
+	add_node(&head, NULL);
+	if (!head)
+		return (ft_mall(NULL, -1), 0);
+	// (void)env;
 	// uid = getenv("LOGNAME");
 	// if (!uid)
 	// 	return (perror("UID not found in envirment\n"), 1);
 	// pw = getpwuid((uid_t)ft_atoi(uid));
-	// print_double_ptr(env);
-	print_env(pw);
+	print_double_ptr(env);
 	while (1)
 	{
 		input = readline("Minishell --> : ");
 		if (!input)
-			break ;
+			ft_mall(&head, -1);
 		else
+		{
 			add_history(input);
+			add_node(&head, input);
+			print_ptr(&head);
+		}
 	}
 	return (0);
 }

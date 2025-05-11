@@ -9,7 +9,8 @@ SRC = minishell.c \
 	ft_strjoin.c \
 	ft_strdup.c \
 	ft_memcpy.c \
-	ft_strlen.c
+	ft_strlen.c \
+	ft_pcollector.c
 OBJ = $(SRC:.c=.o)
 
 # Readline linking

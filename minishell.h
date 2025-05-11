@@ -21,7 +21,7 @@ size_t	ft_strlen(const char *s);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strdup(const char *s);
 void	*ft_memcpy(void *dest, const void *src, size_t n);
-t_ptr	*add_node(void *ptr);
+void	add_node(t_ptr **head, void *ptr);
 void    *ft_mall(t_ptr **head, ssize_t size);
 void	ft_lstadd_back(t_ptr **lst, t_ptr *new);
 void	ft_lstclear(t_ptr **lst, void (*del)(void*));

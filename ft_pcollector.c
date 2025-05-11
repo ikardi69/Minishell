@@ -6,38 +6,46 @@
 /*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 17:58:14 by mteffahi          #+#    #+#             */
-/*   Updated: 2025/05/09 18:10:18 by mteffahi         ###   ########.fr       */
+/*   Updated: 2025/05/09 18:27:16 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_ptr	*add_node(void *ptr)
+void	add_node(t_ptr **head, void *ptr)
 {
 	t_ptr	*new_node;
 
 	new_node = (t_ptr *)malloc(sizeof(t_ptr));
 	if (!new_node)
-		return NULL;
-	new_node->ptr = ptr;
-	new_node->next = NULL;
-	return (new_node);
+		ft_mall(head, -1);
+	if (!ptr)
+	{
+		new_node->ptr = NULL;
+		new_node->next = NULL;
+	}
+	else
+	{
+		new_node->ptr = ptr;
+		new_node->next = NULL;
+	}
+	ft_lstadd_back(head, new_node);
 }
 
 void    *ft_mall(t_ptr **head, ssize_t size)
 {
 	void    *new_ptr;
-	t_ptr	*new_node;
+	// t_ptr	*new_node;
 
 	if (size <= 0)
-		return (ft_lstclear(head, free), NULL);
+		return (ft_lstclear(head, free), exit(0), NULL);
 	new_ptr = (void *)malloc(size);
 	if (!new_ptr)
 		return (ft_lstclear(head, free), NULL);
-	new_node = add_node(new_ptr);
-	if (!new_node)
-		return (ft_lstclear(head, free), NULL);
-	ft_lstadd_back(head, new_node);
+	add_node(head, new_ptr);
+	// new_node = add_node(head, new_ptr);
+	// if (!new_node)
+	// 	return (ft_lstclear(head, free), NULL);
 	return (new_ptr);
 }
 
