@@ -25,5 +25,10 @@ void	add_node(t_ptr **head, void *ptr);
 void    *ft_mall(t_ptr **head, ssize_t size);
 void	ft_lstadd_back(t_ptr **lst, t_ptr *new);
 void	ft_lstclear(t_ptr **lst, void (*del)(void*));
+/*parsing starting*/
+void	pars(char *input);
+int		check_q(char *input, int i);
+int		checker_synx(char *input, char check);
+void	first_q(char *input);
 
 #endif // MINISHELL_H

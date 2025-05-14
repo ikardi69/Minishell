@@ -6,7 +6,7 @@
 /*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 13:10:06 by ikardi            #+#    #+#             */
-/*   Updated: 2025/05/09 18:26:55 by mteffahi         ###   ########.fr       */
+/*   Updated: 2025/05/14 16:10:07 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ int main(int argc, char **argv, char **env)
 			add_history(input);
 			add_node(&head, input);
 			print_ptr(&head);
+			pars(input);
 		}
 	}
 	return (0);
