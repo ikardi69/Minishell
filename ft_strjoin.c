@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikardi <ikardi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 13:10:42 by mteffahi          #+#    #+#             */
-/*   Updated: 2025/05/08 15:56:12 by ikardi           ###   ########.fr       */
+/*   Updated: 2025/05/16 16:20:18 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(t_ptr **head, char const *s1, char const *s2)
 {
 	char	*result;
 	size_t	size;
@@ -20,13 +20,13 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (!s1 || !s2)
 		return (NULL);
 	if (s1[0] == '\0' && s2[0] == '\0')
-		return (ft_strdup(""));
+		return (ft_strdup(head, ""));
 	if (s1[0] == '\0')
-		return (ft_strdup(s2));
+		return (ft_strdup(head ,s2));
 	if (s2[0] == '\0')
-		return (ft_strdup(s1));
+		return (ft_strdup(head ,s1));
 	size = (ft_strlen(s1) + ft_strlen(s2)) + 1;
-	result = (char *)malloc(size);
+	result = ft_mall(head, size);
 	if (!result)
 		return (NULL);
 	ft_memcpy(result, s1, ft_strlen(s1));
