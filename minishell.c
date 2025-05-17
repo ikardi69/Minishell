@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ikardi <ikardi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 13:10:06 by ikardi            #+#    #+#             */
-/*   Updated: 2025/05/16 16:23:35 by mteffahi         ###   ########.fr       */
+/*   Updated: 2025/05/17 21:50:58 by ikardi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,20 @@ void	print_ptr(t_ptr **head)
 	}
 }
 
+int	ft_cmp(char *input, char *st)
+{
+	int	i;
+
+	i = 0;
+	while (input[i] && st[i])
+	{
+		if (input[i] != st[i])
+			return 0;
+		i++;
+	}
+	return 1;
+}
+
 int main(int argc, char **argv, char **env)
 {
 	char *input;
@@ -71,6 +85,8 @@ int main(int argc, char **argv, char **env)
 	while (1)
 	{
 		input = readline("Minishell --> : ");
+		if ((ft_cmp(input, "exit")))
+			input = NULL;
 		if (!input)
 			ft_mall(&head, -1);
 		else
