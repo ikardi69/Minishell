@@ -6,7 +6,7 @@
 /*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 17:58:14 by mteffahi          #+#    #+#             */
-/*   Updated: 2025/05/09 18:27:16 by mteffahi         ###   ########.fr       */
+/*   Updated: 2025/05/20 20:57:56 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,23 @@ void    *ft_mall(t_ptr **head, ssize_t size)
 void	ft_lstadd_back(t_ptr **lst, t_ptr *new)
 {
 	t_ptr	*tmp;
+
+	if (!new || !lst)
+		return ;
+	if (*lst == NULL)
+	{
+		*lst = new;
+		return ;
+	}
+	tmp = *lst;
+	while (tmp && tmp->next != NULL)
+		tmp = tmp->next;
+	tmp->next = new;
+}
+
+void	ft_lstadd_back_tkn(t_tkn **lst, t_tkn *new)
+{
+	t_tkn	*tmp;
 
 	if (!new || !lst)
 		return ;

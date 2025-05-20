@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikardi <ikardi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 13:10:06 by ikardi            #+#    #+#             */
-/*   Updated: 2025/05/17 21:50:58 by ikardi           ###   ########.fr       */
+/*   Updated: 2025/05/20 21:40:02 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ int	ft_cmp(char *input, char *st)
 			return 0;
 		i++;
 	}
+	if (input[i] == '\0' && st[i] == '\0')  // Check if both strings ended
+		return (1);
 	return 1;
 }
 
@@ -67,8 +69,6 @@ int main(int argc, char **argv, char **env)
 {
 	char *input;
 	t_ptr	*head;
-	// char	*uid;
-	// struct passwd *pw;
 
 	(void)argc;
 	(void)argv;
@@ -76,26 +76,23 @@ int main(int argc, char **argv, char **env)
 	add_node(&head, NULL);
 	if (!head)
 		return (ft_mall(NULL, -1), 0);
-	// (void)env;
-	// uid = getenv("LOGNAME");
-	// if (!uid)
-	// 	return (perror("UID not found in envirment\n"), 1);
-	// pw = getpwuid((uid_t)ft_atoi(uid));
 	print_double_ptr(env);
 	while (1)
 	{
 		input = readline("Minishell --> : ");
-		if ((ft_cmp(input, "exit")))
-			input = NULL;
-		if (!input)
-			ft_mall(&head, -1);
-		else
+		if (!input || ft_cmp(input, "exit"))  // Fixed exit check
 		{
-			add_history(input);
-			// add_node(&head, input);
-			print_ptr(&head);
-			pars(&head, input);
+			if (input)
+				free(input);
+			ft_mall(&head, -1);
+			break;  // Exit the loop
 		}
+
+		add_history(input);
+		// add_node(&head, input);
+		// print_ptr(&head);
+		pars(&head, ft_strdup(&head, input));
+		free(input);
 	}
 	return (0);
 }
