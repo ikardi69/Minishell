@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pars.c                                             :+:      :+:    :+:   */
+/*   testssss.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 15:39:06 by mteffahi          #+#    #+#             */
-/*   Updated: 2025/05/21 15:14:11 by mteffahi         ###   ########.fr       */
+/*   Updated: 2025/05/21 15:07:59 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,9 +99,40 @@ t_tkn_type identify_tkn(char *val)
 		return (wrd);
 }
 
-int handle_rdr(t_ptr **head, t_tkn **token, char *input, int *i)
+int	splt(t_ptr **head, t_tkn **token, char *input, int *i)
 {
-	// int pos = *i;
+	int			len;
+	char		*vl;
+	int			pos;
+	t_tkn_type	type;
+
+	if (!input)
+		return (ft_mall(head, 0), 0);
+	len = 0;
+	pos = *i;
+	while (input[*i] && input[*i] != ' ' && input[*i] != '\'' && input[*i] != '"'
+		&& input[*i] != '|' && input[*i] != '<' && input[*i] != '>')
+	{
+		(*i)++;
+		len++;
+	}
+	vl = ft_mall(head, (len + 1));
+	len = 0;
+	while (pos < *i)
+	{
+		vl[len] = input[pos];
+		pos++;
+		len++;
+	}
+	vl[len] = '\0';
+	type = identify_tkn(vl);
+	creat_tkn_node(head, token, vl, type);
+	return (0);
+}
+
+int handle_redirect(t_ptr **head, t_tkn **token, char *input, int *i)
+{
+	int pos = *i;
 	char *vl;
 	t_tkn_type type;
 	
@@ -161,37 +192,6 @@ int handle_rdr(t_ptr **head, t_tkn **token, char *input, int *i)
 	return (0);
 }
 
-int	splt(t_ptr **head, t_tkn **token, char *input, int *i)
-{
-	int			len;
-	char		*vl;
-	int			pos;
-	t_tkn_type	type;
-
-	if (!input)
-		return (ft_mall(head, 0), 0);
-	len = 0;
-	pos = *i;
-	while (input[*i] && input[*i] != ' ' && input[*i] != '\'' && input[*i] != '"'
-		&& input[*i] != '|' && input[*i] != '<' && input[*i] != '>')
-	{
-		(*i)++;
-		len++;
-	}
-	vl = ft_mall(head, (len + 1));
-	len = 0;
-	while (pos < *i)
-	{
-		vl[len] = input[pos];
-		pos++;
-		len++;
-	}
-	vl[len] = '\0';
-	type = identify_tkn(vl);
-	creat_tkn_node(head, token, vl, type);
-	return (0);
-}
-
 static void	printi_zab(t_tkn **head)
 {
 	t_tkn	*tmp;
@@ -207,7 +207,7 @@ static void	printi_zab(t_tkn **head)
 	}
 }
 
-void	pars(t_ptr **head,char *input)
+void	pars(t_ptr **head, char *input)
 {
 	int		i;
 	t_tkn	*tkn_head;
@@ -225,7 +225,7 @@ void	pars(t_ptr **head,char *input)
 		else if (input[i] == '\'' || input[i] == '"')
 			splt_quoted(head, &tkn_head, input, &i);
 		else if (input[i] == '|' || input[i] == '<' || input[i] == '>')
-			handle_rdr(head, &tkn_head, input, &i);
+			handle_redirect(head, &tkn_head, input, &i);
 		else
 			splt(head, &tkn_head, input, &i);
 	}

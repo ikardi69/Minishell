@@ -6,7 +6,7 @@
 /*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 15:44:40 by mteffahi          #+#    #+#             */
-/*   Updated: 2025/05/20 22:02:22 by mteffahi         ###   ########.fr       */
+/*   Updated: 2025/05/21 15:18:04 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,15 @@ char	*extr_qstr(t_ptr **head, char *str)
 
 int ft_strcmp(char *s1, char *s2)
 {
-	int	i;
+	int i = 0;
 
-	i = -1;
-	while (s1[++i] && s2[++i])
+	while (s1[i] && s2[i])
 	{
 		if (s1[i] != s2[i])
-			return (1);
+			return (s1[i] - s2[i]);
+		i++;
 	}
-	return (0);
+	return (s1[i] - s2[i]);
 }
 
 // int is_redir(char c)

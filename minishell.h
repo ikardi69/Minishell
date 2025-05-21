@@ -18,13 +18,13 @@ typedef struct s_ptr
 
 typedef enum e_tkn_type
 {
-	NULL_Tk,
-	wrd,
-	PI,		// |
-	red_in,		// <
-	red_out,	// >
-	red_apnd,	// >>
-	HEREDOC		// <<
+	NULL_Tk,	// 0
+	wrd,		// 1
+	PI,		// |	2
+	red_in,		// <	3
+	red_out,	// >	4
+	red_apnd,	// >>	5
+	HEREDOC		// <<	6
 }t_tkn_type;
 
 typedef struct s_tkn
@@ -59,5 +59,7 @@ t_tkn_type	identify_tkn(char *val);
 int			splt_quoted(t_ptr **head, t_tkn **token, char *input, int *i);
 int			splt(t_ptr **head, t_tkn **token, char *input, int *i);
 void		creat_tkn_node(t_ptr **head, t_tkn **tkn_head, char *val, t_tkn_type type);
+/**********************************************************************************************/
+int 		handle_rdr(t_ptr **head, t_tkn **token, char *input, int *i);
 
 #endif
