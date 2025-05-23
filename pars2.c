@@ -6,19 +6,20 @@
 /*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 17:12:05 by mteffahi          #+#    #+#             */
-/*   Updated: 2025/05/20 21:10:23 by mteffahi         ###   ########.fr       */
+/*   Updated: 2025/05/23 14:08:55 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void    invalid_sqnc(char *input)
+int    invalid_sqnc(char *input)
 {
 	int size;
 
 	size = ft_strlen(input) - 1;
 	if (input[0] == '|' || input[size] == '|')
-		ft_putstr_fd("syntax error near unexpected token\n", 2);
+		return (ft_putstr_fd("syntax error near unexpected token\n", 2), 0);
+	return (1);
 }
 
 int	is_qtd(char *input)

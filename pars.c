@@ -6,7 +6,7 @@
 /*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 15:39:06 by mteffahi          #+#    #+#             */
-/*   Updated: 2025/05/21 15:14:11 by mteffahi         ###   ########.fr       */
+/*   Updated: 2025/05/23 16:16:06 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	checker_synx(char *input, char check)
 		if (input[i] == check)
 			cnt++;
 	}
-	if (cnt == 2)
+	if (cnt > 0 && cnt % 2 == 0)
 		return (1);
 	else
 		return (0);
@@ -52,7 +52,7 @@ int	check_q(char *input, int i)
 	return (57);
 }
 
-void	first_q(char *input)
+int	first_q(char *input)
 {
 	int	i;
 
@@ -61,13 +61,13 @@ void	first_q(char *input)
 	{
 		if (input[i] == '\'' || input[i] == '"' || input[i] == '(')
 		{
+			// if (input[i + 1] == '\'' || input[i + 1] == '"' || input[i + 1] == ')')
+				// return (ft_putstr_fd("cat: '': No such file or directory\n", 2), 0);
 			if (!(check_q(input, i)))
-			{
-				ft_putstr_fd("Syntax error\n", 2);
-				return ;
-			}
+				return (ft_putstr_fd("Syntax error\n", 2), 0);
 		}
 	}
+	return (1);
 }
 
 void	creat_tkn_node(t_ptr **head, t_tkn **tkn_head, char *val, t_tkn_type type)
@@ -101,7 +101,6 @@ t_tkn_type identify_tkn(char *val)
 
 int handle_rdr(t_ptr **head, t_tkn **token, char *input, int *i)
 {
-	// int pos = *i;
 	char *vl;
 	t_tkn_type type;
 	
@@ -215,8 +214,10 @@ void	pars(t_ptr **head,char *input)
 	tkn_head = NULL;
 	if (!input)
 		return ;
-	first_q(input);
-	invalid_sqnc(input);
+	if (!first_q(input) || !invalid_sqnc(input))
+		return ;
+	// first_q(input);
+	// invalid_sqnc(input);
 	i = 0;
 	while (input[i])
 	{

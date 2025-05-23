@@ -48,9 +48,9 @@ void		ft_lstclear(t_ptr **lst, void (*del)(void*));
 void		pars(t_ptr **head, char *input);
 int			check_q(char *input, int i);
 int			checker_synx(char *input, char check);
-void		first_q(char *input);
+int			first_q(char *input);
 void		ft_putstr_fd(char *s, int fd);
-void    	invalid_sqnc(char *input);
+int	    	invalid_sqnc(char *input);
 int 		ft_strcmp(char *s1, char *s2);
 /**********************************************************************************************/
 int			is_qtd(char *input);

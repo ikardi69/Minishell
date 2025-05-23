@@ -6,7 +6,7 @@
 /*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 20:09:53 by mteffahi          #+#    #+#             */
-/*   Updated: 2025/05/21 15:05:41 by mteffahi         ###   ########.fr       */
+/*   Updated: 2025/05/23 14:06:15 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,10 @@ int	splt_quoted(t_ptr **head, t_tkn **token, char *input, int *i)
 	}
 	if (input[*i] == q_type)
 		(*i)++;  // Skip closing quote
-	else
-		return (0);  // Unclosed quote
+	// else
+	// 	return (0);  // Unclosed quote
+	if (len == 0)
+		return (ft_putstr_fd("cat: '': No such file or directory\n", 2), 0);
 	vl = ft_mall(head, (len + 1));
 	cpy(vl, input, pos, len);
 	creat_tkn_node(head, token, vl, wrd);
