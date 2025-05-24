@@ -54,3 +54,20 @@ int	splt_quoted(t_ptr **head, t_tkn **token, char *input, int *i)
 	creat_tkn_node(head, token, vl, wrd);
 	return (0);
 }
+
+int	expand_var(char *input, int *i, t_tkn **tkn_head, t_ptr **head_ptr)
+{
+	const char *env;
+
+	(*i)++;
+	env = getenv(&input[*i]);
+	if (!env)
+	{
+		// printf("inpit[i] = %c\n", input[*i]);
+		(*i)++;
+		return (ft_putstr_fd("\n", 1), 0);
+	}
+	creat_tkn_node(head_ptr, tkn_head, (char *)env, identify_tkn(((char *)env)));
+	(*i)++;
+	return (1);
+}

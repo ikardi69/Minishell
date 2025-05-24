@@ -61,5 +61,7 @@ int			splt(t_ptr **head, t_tkn **token, char *input, int *i);
 void		creat_tkn_node(t_ptr **head, t_tkn **tkn_head, char *val, t_tkn_type type);
 /**********************************************************************************************/
 int 		handle_rdr(t_ptr **head, t_tkn **token, char *input, int *i);
+/**********************************************************************************************/
+int	expand_var(char *input, int *i, t_tkn **tkn_head, t_ptr **head_ptr);
 
 #endif

@@ -177,6 +177,8 @@ int	splt(t_ptr **head, t_tkn **token, char *input, int *i)
 		(*i)++;
 		len++;
 	}
+	if (input[*i] == '$')
+		return (1);
 	vl = ft_mall(head, (len + 1));
 	len = 0;
 	while (pos < *i)
@@ -188,6 +190,7 @@ int	splt(t_ptr **head, t_tkn **token, char *input, int *i)
 	vl[len] = '\0';
 	type = identify_tkn(vl);
 	creat_tkn_node(head, token, vl, type);
+	(*i)++;
 	return (0);
 }
 
@@ -221,12 +224,15 @@ void	pars(t_ptr **head,char *input)
 	i = 0;
 	while (input[i])
 	{
+		// printf("input[i] = %c\n", input[i]);
 		if (input[i] == ' ')
 			i++;  // Skip spaces
 		else if (input[i] == '\'' || input[i] == '"')
 			splt_quoted(head, &tkn_head, input, &i);
 		else if (input[i] == '|' || input[i] == '<' || input[i] == '>')
 			handle_rdr(head, &tkn_head, input, &i);
+		else if (input[i] == '$')
+			expand_var(input, &i, &tkn_head, head);
 		else
 			splt(head, &tkn_head, input, &i);
 	}
