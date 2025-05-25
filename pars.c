@@ -6,7 +6,7 @@
 /*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 15:39:06 by mteffahi          #+#    #+#             */
-/*   Updated: 2025/05/25 12:58:15 by mteffahi         ###   ########.fr       */
+/*   Updated: 2025/05/25 17:50:56 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,11 +172,12 @@ int	splt(t_ptr **head, t_tkn **token, char *input, int *i)
 	len = 0;
 	pos = *i;
 	while (input[*i] && input[*i] != ' ' && input[*i] != '\'' && input[*i] != '"'
-		&& input[*i] != '|' && input[*i] != '<' && input[*i] != '>')
+		&& input[*i] != '|' && input[*i] != '<' && input[*i] != '>' && input[*i] != '$')
 	{
 		(*i)++;
 		len++;
 	}
+	// printf("inp = %c\n", input[*i]);
 	if (input[*i] == '$')
 		return (1);
 	vl = ft_mall(head, (len + 1));
@@ -219,8 +220,6 @@ void	pars(t_ptr **head,char *input)
 		return ;
 	if (!first_q(input) || !invalid_sqnc(input))
 		return ;
-	// first_q(input);
-	// invalid_sqnc(input);
 	i = 0;
 	while (input[i])
 	{

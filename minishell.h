@@ -62,6 +62,8 @@ void		creat_tkn_node(t_ptr **head, t_tkn **tkn_head, char *val, t_tkn_type type)
 /**********************************************************************************************/
 int 		handle_rdr(t_ptr **head, t_tkn **token, char *input, int *i);
 /**********************************************************************************************/
-int	expand_var(char *input, int *i, t_tkn **tkn_head, t_ptr **head_ptr);
+int			expand_var(char *input, int *i, t_tkn **tkn_head, t_ptr **head_ptr);
+int			ft_isalnum(int c);
+char		*gt_nm(char *input, int *i, t_ptr **head);
 
 #endif
