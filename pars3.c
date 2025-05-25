@@ -6,7 +6,7 @@
 /*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 20:09:53 by mteffahi          #+#    #+#             */
-/*   Updated: 2025/05/25 18:03:34 by mteffahi         ###   ########.fr       */
+/*   Updated: 2025/05/25 18:05:16 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,6 @@ int	expand_var(char *input, int *i, t_tkn **tkn_head, t_ptr **head_ptr)
 		return (ft_putstr_fd("\n", 1), 0);
 	}
 	creat_tkn_node(head_ptr, tkn_head, (char *)env, identify_tkn(((char *)env)));
-	// free((char *)env);
 	// (*i)++;
 	return (1);
 }
