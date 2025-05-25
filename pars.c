@@ -6,7 +6,7 @@
 /*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 15:39:06 by mteffahi          #+#    #+#             */
-/*   Updated: 2025/05/23 16:16:06 by mteffahi         ###   ########.fr       */
+/*   Updated: 2025/05/25 12:58:15 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -232,7 +232,10 @@ void	pars(t_ptr **head,char *input)
 		else if (input[i] == '|' || input[i] == '<' || input[i] == '>')
 			handle_rdr(head, &tkn_head, input, &i);
 		else if (input[i] == '$')
-			expand_var(input, &i, &tkn_head, head);
+		{
+			if (!(expand_var(input, &i, &tkn_head, head)))
+				break ;
+		}
 		else
 			splt(head, &tkn_head, input, &i);
 	}
