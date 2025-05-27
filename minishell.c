@@ -6,7 +6,7 @@
 /*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 13:10:06 by mteffahi          #+#    #+#             */
-/*   Updated: 2025/05/21 13:38:13 by mteffahi         ###   ########.fr       */
+/*   Updated: 2025/05/26 18:11:56 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	ft_cmp(char *input, char *st)
 	return 1;
 }
 
-int main(int argc, char **argv, char **env)
+int main(int argc, char **argv, char **env) // wach ila m7iti env kamla wach getenv atl9a dak var li kt9allb 3lih fl expanding wla la, ila l9ato rah probleeeeem
 {
 	char *input;
 	t_ptr	*head;
