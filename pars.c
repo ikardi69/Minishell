@@ -6,7 +6,7 @@
 /*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 15:39:06 by mteffahi          #+#    #+#             */
-/*   Updated: 2025/05/25 17:50:56 by mteffahi         ###   ########.fr       */
+/*   Updated: 2025/06/02 14:12:40 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,7 +191,7 @@ int	splt(t_ptr **head, t_tkn **token, char *input, int *i)
 	vl[len] = '\0';
 	type = identify_tkn(vl);
 	creat_tkn_node(head, token, vl, type);
-	(*i)++;
+	// (*i)++;
 	return (0);
 }
 
@@ -224,18 +224,18 @@ void	pars(t_ptr **head,char *input)
 	while (input[i])
 	{
 		// printf("input[i] = %c\n", input[i]);
-		if (input[i] == ' ')
+		if (input[i] && input[i] == ' ')
 			i++;  // Skip spaces
-		else if (input[i] == '\'' || input[i] == '"')
+		else if (input[i] && (input[i] == '\'' || input[i] == '"'))
 			splt_quoted(head, &tkn_head, input, &i);
-		else if (input[i] == '|' || input[i] == '<' || input[i] == '>')
+		else if (input[i] && (input[i] == '|' || input[i] == '<' || input[i] == '>'))
 			handle_rdr(head, &tkn_head, input, &i);
-		else if (input[i] == '$')
+		else if (input[i] && input[i] == '$')
 		{
 			if (!(expand_var(input, &i, &tkn_head, head)))
 				break ;
 		}
-		else
+		else if (input[i])
 			splt(head, &tkn_head, input, &i);
 	}
 	printi_zab(&tkn_head);

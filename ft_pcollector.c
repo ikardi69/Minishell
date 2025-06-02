@@ -6,7 +6,7 @@
 /*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 17:58:14 by mteffahi          #+#    #+#             */
-/*   Updated: 2025/05/20 20:57:56 by mteffahi         ###   ########.fr       */
+/*   Updated: 2025/06/02 13:59:16 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,23 @@ void	ft_lstadd_back(t_ptr **lst, t_ptr *new)
 void	ft_lstadd_back_tkn(t_tkn **lst, t_tkn *new)
 {
 	t_tkn	*tmp;
+
+	if (!new || !lst)
+		return ;
+	if (*lst == NULL)
+	{
+		*lst = new;
+		return ;
+	}
+	tmp = *lst;
+	while (tmp && tmp->next != NULL)
+		tmp = tmp->next;
+	tmp->next = new;
+}
+
+void	ft_lstadd_back_env(t_env **lst, t_env *new)
+{
+	t_env	*tmp;
 
 	if (!new || !lst)
 		return ;

@@ -1,3 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/26 15:30:55 by mteffahi          #+#    #+#             */
+/*   Updated: 2025/06/02 13:53:39 by mteffahi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+
 #ifndef MINISHELL_H
 #define MINISHELL_H
 
@@ -9,6 +22,13 @@
 # include <sys/types.h>
 # include <unistd.h>
 # define LL_MAX 9223372036854775807LL
+
+typedef struct s_env
+{
+	char			*var;
+	struct s_env	*next;
+}t_env;
+
 
 typedef struct s_ptr
 {
@@ -65,5 +85,11 @@ int 		handle_rdr(t_ptr **head, t_tkn **token, char *input, int *i);
 int			expand_var(char *input, int *i, t_tkn **tkn_head, t_ptr **head_ptr);
 int			ft_isalnum(int c);
 char		*gt_nm(char *input, int *i, t_ptr **head);
+/**********************************************************************************************/
+						/*for setting the envirment to a singly linked list*/
+void		ft_lstadd_back_env(t_env **lst, t_env *new);
+t_env		*set_env_ls(t_ptr **head_ptr, char **env);
+void		set_node(t_env **head, t_ptr **ptr_head, char *env_val);
+
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 15:44:40 by mteffahi          #+#    #+#             */
-/*   Updated: 2025/05/21 15:18:04 by mteffahi         ###   ########.fr       */
+/*   Updated: 2025/05/26 15:35:09 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,3 @@ int ft_strcmp(char *s1, char *s2)
 	}
 	return (s1[i] - s2[i]);
 }
-
-// int is_redir(char c)
-// {
-// 	if (ft_strcmp(&c, ">>"))
-// }
