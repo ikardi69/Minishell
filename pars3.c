@@ -84,11 +84,13 @@ int	expand_var(char *input, int *i, t_tkn **tkn_head, t_ptr **head_ptr)
 	const char	*nm;
 
 	(*i)++;
+	printf("input[i] = %c\n", input[*i]); 
 	nm = gt_nm(input, i, head_ptr);
+	printf("nm = %s\n", nm);
 	env = ft_strdup(head_ptr, getenv(nm));
 	if (!env)
 	{
-		// (*i)++;
+		(*i)++;
 		// printf("inpit[i] = %c\n", input[*i]);
 		ft_mall(head_ptr, 0);
 		return (ft_putstr_fd("\n", 1), 0);

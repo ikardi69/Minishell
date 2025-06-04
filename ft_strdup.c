@@ -17,6 +17,8 @@ char	*ft_strdup(t_ptr **head, const char *s)
 	size_t	size;
 	char	*result;
 
+	if (!s)
+		return(NULL);
 	size = ft_strlen(s) + 1;
 	result = ft_mall(head, size);
 	if (!result)
