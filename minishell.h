@@ -6,7 +6,7 @@
 /*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 15:30:55 by mteffahi          #+#    #+#             */
-/*   Updated: 2025/06/02 13:53:39 by mteffahi         ###   ########.fr       */
+/*   Updated: 2025/06/09 19:38:55 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ char		*gt_nm(char *input, int *i, t_ptr **head);
 void		ft_lstadd_back_env(t_env **lst, t_env *new);
 t_env		*set_env_ls(t_ptr **head_ptr, char **env);
 void		set_node(t_env **head, t_ptr **ptr_head, char *env_val);
+/************************** getting var name **************************************************/
+char		*get_vr(t_env **head, t_ptr **head_ptr, char *name);
 
 
 #endif

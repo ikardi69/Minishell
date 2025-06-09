@@ -6,7 +6,7 @@
 /*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 17:12:43 by mteffahi          #+#    #+#             */
-/*   Updated: 2025/06/02 13:52:13 by mteffahi         ###   ########.fr       */
+/*   Updated: 2025/06/09 19:38:21 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,58 @@ t_env	*set_env_ls(t_ptr **head_ptr, char **env)
 		i++;
 	}
 	return (set);
+}
+
+static	char	*get_vl(t_ptr **head, char *env)
+{
+	int		i;
+	char	*str;
+	int		j;
+
+	i = 0;
+	while (env[i] && env[i] != '\"')
+	{
+		i++;
+	}
+	str = ft_mall(head, (i + 1));
+	j = 0;
+	while (j < i)
+	{
+		str[j] = env[i];
+		j++;
+	}
+	str[j] = '\0';
+	return (str);
+}
+
+static char *gt_nm_helper(t_ptr **ptr_head, char *env_str, char *name)
+{
+	int	i;
+
+	i = 0;
+	while (env_str[i])
+	{
+		if (env_str[i] == '\"')
+		{
+			i++;
+			break ;
+		}
+		i++;
+	}
+	
+}
+
+char	*get_vr(t_env **head, t_ptr **head_ptr, char *name)
+{
+	t_env	*tmp;
+	char	*str;
+
+	tmp = *head;
+	while (tmp)
+	{
+		if (tm)
+	}
+	
 }
 
 // void	handl_var_name(t_ptr **head, t_tkn **tkns)
