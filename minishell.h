@@ -6,7 +6,7 @@
 /*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 15:30:55 by mteffahi          #+#    #+#             */
-/*   Updated: 2025/06/09 19:38:55 by mteffahi         ###   ########.fr       */
+/*   Updated: 2025/06/13 16:34:39 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void    	*ft_mall(t_ptr **head, ssize_t size);
 void		ft_lstadd_back(t_ptr **lst, t_ptr *new);
 void		ft_lstclear(t_ptr **lst, void (*del)(void*));
 /*parsing starting*/
-void		pars(t_ptr **head, char *input);
+void		pars(t_ptr **head, char *input, char **env); //added env for the test
 int			check_q(char *input, int i);
 int			checker_synx(char *input, char check);
 int			first_q(char *input);
@@ -92,6 +92,7 @@ t_env		*set_env_ls(t_ptr **head_ptr, char **env);
 void		set_node(t_env **head, t_ptr **ptr_head, char *env_val);
 /************************** getting var name **************************************************/
 char		*get_vr(t_env **head, t_ptr **head_ptr, char *name);
-
+char		*extract_vl(t_ptr **ptr_head, char *variable);
+int 		ft_strcmp_vr(char *s1, char *s2, size_t size);
 
 #endif

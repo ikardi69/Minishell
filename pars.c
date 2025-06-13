@@ -6,7 +6,7 @@
 /*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 15:39:06 by mteffahi          #+#    #+#             */
-/*   Updated: 2025/06/09 19:25:24 by mteffahi         ###   ########.fr       */
+/*   Updated: 2025/06/13 17:22:58 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,12 +210,15 @@ static void	printi_zab(t_tkn **head)
 	}
 }
 
-void	pars(t_ptr **head,char *input)
+void	pars(t_ptr **head,char *input, char **env)
 {
 	int		i;
 	t_tkn	*tkn_head;
+	t_env	*env_hd;
 
 	tkn_head = NULL;
+	env_hd = NULL;
+	env_hd = set_env_ls(head, env);
 	if (!input)
 		return ;
 	if (!first_q(input) || !invalid_sqnc(input))
@@ -232,8 +235,13 @@ void	pars(t_ptr **head,char *input)
 			handle_rdr(head, &tkn_head, input, &i);
 		else if (input[i] && input[i] == '$')
 		{
-			if (!(expand_var(input, &i, &tkn_head, head)))
-				break ;
+			// if (!(expand_var(input, &i, &tkn_head, head)))
+				// break ;
+			i++;
+			char *whole_vr = get_vr(&env_hd, head, gt_nm(input, &i, head));
+			// printf("whole = %s\n", whole_vr);
+			char *val = extract_vl(head, whole_vr);
+			creat_tkn_node(head, &tkn_head, val, identify_tkn(val));
 		}
 		else if (input[i])
 			splt(head, &tkn_head, input, &i);

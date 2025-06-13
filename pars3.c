@@ -6,7 +6,7 @@
 /*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 20:09:53 by mteffahi          #+#    #+#             */
-/*   Updated: 2025/06/05 16:09:23 by mteffahi         ###   ########.fr       */
+/*   Updated: 2025/06/13 16:59:06 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ char	*gt_nm(char *input, int *i, t_ptr **head)
 
 	pos = *i;
 	len = 0;
+	printf("input = %s\n", input + (*i));
 	while (input[pos] && ft_isalnum(input[pos]))
 	{
 		pos++;
@@ -75,6 +76,7 @@ char	*gt_nm(char *input, int *i, t_ptr **head)
 		(*i)++;
 	}
 	v_name[len] = '\0';
+	printf("name = %s\n", v_name);
 	return (v_name);
 }
 

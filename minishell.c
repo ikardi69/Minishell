@@ -6,7 +6,7 @@
 /*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 13:10:06 by mteffahi          #+#    #+#             */
-/*   Updated: 2025/05/26 18:11:56 by mteffahi         ###   ########.fr       */
+/*   Updated: 2025/06/13 16:43:23 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int main(int argc, char **argv, char **env) // wach ila m7iti env kamla wach get
 		add_history(input);
 		// add_node(&head, input);
 		// print_ptr(&head);
-		pars(&head, ft_strdup(&head, input));
+		pars(&head, ft_strdup(&head, input), env);
 		free(input);
 	}
 	return (0);
