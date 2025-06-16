@@ -6,7 +6,7 @@
 /*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 13:10:06 by mteffahi          #+#    #+#             */
-/*   Updated: 2025/06/13 16:43:23 by mteffahi         ###   ########.fr       */
+/*   Updated: 2025/06/16 17:56:15 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int main(int argc, char **argv, char **env) // wach ila m7iti env kamla wach get
 	while (1)
 	{
 		input = readline("Minishell --> : ");
-		if (!input || ft_cmp(input, "exit"))  // Fixed exit check
+		if (ft_cmp(input, "exit"))  // Fixed exit check
 		{
 			if (input)
 				free(input);
