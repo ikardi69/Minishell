@@ -6,7 +6,7 @@
 /*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 15:39:06 by mteffahi          #+#    #+#             */
-/*   Updated: 2025/06/16 18:19:52 by mteffahi         ###   ########.fr       */
+/*   Updated: 2025/06/29 17:42:07 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -219,14 +219,13 @@ void	pars(t_ptr **head,char *input, char **env)
 	tkn_head = NULL;
 	env_hd = NULL;
 	env_hd = set_env_ls(head, env);
-	if (!input)
-		return ;
-	if (!first_q(input) || !invalid_sqnc(input))
+	// if (!input)
+	// 	return ;
+	if (!input || !first_q(input) || !invalid_sqnc(input))
 		return ;
 	i = 0;
 	while (input[i])
 	{
-		// printf("input[i] = %c\n", input[i]);
 		if (input[i] && input[i] == ' ')
 			i++;  // Skip spaces
 		else if (input[i] && (input[i] == '\'' || input[i] == '"'))
@@ -239,7 +238,6 @@ void	pars(t_ptr **head,char *input, char **env)
 				// break ;
 			i++;
 			char *whole_vr = get_vr(&env_hd, head, gt_nm(input, &i, head));
-			// printf("whole = %s\n", whole_vr);
 			char *val = extract_vl(head, whole_vr);
 			creat_tkn_node(head, &tkn_head, val, identify_tkn(val));
 		}
