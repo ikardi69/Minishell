@@ -6,7 +6,7 @@
 /*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 15:30:55 by mteffahi          #+#    #+#             */
-/*   Updated: 2025/06/13 16:34:39 by mteffahi         ###   ########.fr       */
+/*   Updated: 2025/06/30 19:41:58 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,29 @@ typedef struct s_tkn
 	t_tkn_type		tkn_typ;
 	struct s_tkn	*next;
 }t_tkn;
+
+// typedef enum e_tkn_type
+// {
+// 	red_in,
+// 	red_out,
+// 	red_apnd,
+// 	HEREDOC
+// }	t_tkn_type;
+
+typedef struct s_redirs
+{
+	char			*filename;
+	t_tkn_type		type;
+	struct s_redirs	*next;
+}	t_redirs;
+
+typedef struct s_cmd
+{
+	char			**args;
+	t_redirs		*pre_redirs;
+	t_redirs		*post_redirs;
+	struct s_cmd	*next;
+}	t_cmd;
 
 
 int	    	ft_atoi(const char *str);
