@@ -6,7 +6,7 @@
 /*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 15:30:55 by mteffahi          #+#    #+#             */
-/*   Updated: 2025/06/30 19:41:58 by mteffahi         ###   ########.fr       */
+/*   Updated: 2025/07/04 19:38:00 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,5 +117,8 @@ void		set_node(t_env **head, t_ptr **ptr_head, char *env_val);
 char		*get_vr(t_env **head, t_ptr **head_ptr, char *name);
 char		*extract_vl(t_ptr **ptr_head, char *variable);
 int 		ft_strcmp_vr(char *s1, char *s2, size_t size);
+/************************** creating the cmd **************************************************/
+t_cmd		*parse_tokens_to_commands(t_tkn *tokens);
+t_cmd		*crt_cmd(t_ptr **ptr);
 
 #endif
