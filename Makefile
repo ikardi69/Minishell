@@ -16,7 +16,9 @@ SRC = minishell.c \
 	pars3.c \
 	red_prs.c \
 	pars4.c \
-	strc_cr.c
+	strc_cr.c \
+	test.c \
+	printing.c
 OBJ = $(SRC:.c=.o)
 
 # Readline linking

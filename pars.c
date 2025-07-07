@@ -6,7 +6,7 @@
 /*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 15:39:06 by mteffahi          #+#    #+#             */
-/*   Updated: 2025/06/29 17:42:07 by mteffahi         ###   ########.fr       */
+/*   Updated: 2025/07/05 22:05:14 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -245,4 +245,6 @@ void	pars(t_ptr **head,char *input, char **env)
 			splt(head, &tkn_head, input, &i);
 	}
 	printi_zab(&tkn_head);
+	t_cmd *final = parse_tokens_to_commands(head, tkn_head);
+	print_cmd_list(final);
 }

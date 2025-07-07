@@ -6,7 +6,7 @@
 /*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 15:30:55 by mteffahi          #+#    #+#             */
-/*   Updated: 2025/07/04 19:38:00 by mteffahi         ###   ########.fr       */
+/*   Updated: 2025/07/05 22:05:04 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,14 @@ char		*get_vr(t_env **head, t_ptr **head_ptr, char *name);
 char		*extract_vl(t_ptr **ptr_head, char *variable);
 int 		ft_strcmp_vr(char *s1, char *s2, size_t size);
 /************************** creating the cmd **************************************************/
-t_cmd		*parse_tokens_to_commands(t_tkn *tokens);
+t_cmd		*parse_tokens_to_commands(t_ptr **head, t_tkn *tokens);
 t_cmd		*crt_cmd(t_ptr **ptr);
+/////////////////////////////////////////////////////////////////////////////////
+void		append_arg(t_ptr **head, char ***args, char *word);
+void append_redir(t_redirs **list, t_redirs *new_redir);
+t_cmd *init_new_cmd(t_ptr **head);
+//////////////////	FOR PRINTING	/////////////////////////////////////////////
+void print_cmd_list(t_cmd *cmd_list);
+void print_redirs(t_redirs *redir_list, const char *label);
 
 #endif
