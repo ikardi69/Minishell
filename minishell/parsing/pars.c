@@ -6,7 +6,7 @@
 /*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 15:39:06 by mteffahi          #+#    #+#             */
-/*   Updated: 2025/07/13 03:21:51 by mteffahi         ###   ########.fr       */
+/*   Updated: 2025/07/13 03:34:12 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,6 +216,14 @@ void shell_last_exit(int *i, int shell_last_exit)
 	(*i) += 2;
 }
 
+int little_check(char *input)
+{
+	if (input[0] == '\"' && input[1] == '\"')
+		return (0);
+	else
+		return (1);
+}
+
 t_cmd	*pars(int last_exit_status, t_ptr **head, char *input, char **env)
 {
 	int		i;
@@ -226,10 +234,11 @@ t_cmd	*pars(int last_exit_status, t_ptr **head, char *input, char **env)
 	tkn_head = NULL;
 	env_hd = NULL;
 	env_hd = set_env_ls(head, env);
-	(void)env; // To avoid unused variable warning for now
-	if (!input || !first_q(input) || !invalid_sqnc(input))
+	// (void)env; // To avoid unused variable warning for now
+	if (!input || !first_q(input) || !invalid_sqnc(input) || !little_check(input))
 		return (NULL);
 	i = 0;
+	printf("\n%s\n", input);
 	while (input[i])
 	{
 		if (input[i] && input[i] == ' ')
