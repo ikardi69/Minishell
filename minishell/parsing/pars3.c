@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars3.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ilallali <ilallali@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 20:09:53 by mteffahi          #+#    #+#             */
-/*   Updated: 2025/07/09 23:31:31 by ilallali         ###   ########.fr       */
+/*   Updated: 2025/07/13 03:21:55 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	splt_quoted(t_ptr **head, t_tkn **token, char *input, int *i)
 	if (input[*i] == q_type)
 		(*i)++;  // Skip closing quote
 	if (len == 0 && (*i) >= 2 && input[(*i) - 3] != '=')
-		return (ft_putstr_fd("cat: '': No such file or directory\n", 2), 0);
+		return (ft_putstr_fd("cat: '': No such file or directory", 2), 0);
 	vl = ft_mall(head, (len + 1));
 	cpy(vl, input, pos, len);
 	creat_tkn_node(head, token, vl, identify_tkn(vl));
@@ -90,7 +90,7 @@ int	expand_var(char *input, int *i, t_tkn **tkn_head, t_ptr **head_ptr)
 	{
 		(*i)++;
 		ft_mall(head_ptr, 0);
-		return (ft_putstr_fd("\n", 1), 0);
+		return (ft_putstr_fd("", 1), 0);
 	}
 	creat_tkn_node(head_ptr, tkn_head, (char *)env, identify_tkn(((char *)env)));
 	// (*i)++;

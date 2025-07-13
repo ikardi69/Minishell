@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars4.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ilallali <ilallali@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 17:12:43 by mteffahi          #+#    #+#             */
-/*   Updated: 2025/07/09 23:31:31 by ilallali         ###   ########.fr       */
+/*   Updated: 2025/07/13 03:21:57 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,7 +185,7 @@ char	*extract_vl(t_ptr **ptr_head, char *variable)
 
 	i = 0;
 	if (!variable)
-		printf("NULL\n");
+		printf("NULL");
 	if (!variable)  // Return early if variable is NULL
 		return (NULL);
 	// Skip to the first quote or '=' sign (assuming format VAR="value" or VAR=value)

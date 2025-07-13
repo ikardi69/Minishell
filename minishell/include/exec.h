@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ilallali <ilallali@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 13:49:54 by ilallali          #+#    #+#             */
-/*   Updated: 2025/07/10 16:08:01 by ilallali         ###   ########.fr       */
+/*   Updated: 2025/07/13 03:14:18 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,7 +184,8 @@ void    	*ft_mall(t_ptr **head, ssize_t size);
 void		ft_lstadd_back1(t_ptr **lst, t_ptr *new);
 void		ft_lstclear1(t_ptr **lst, void (*del)(void*));
 /*parsing starting*/
-t_cmd		*pars(t_ptr **head, char *input, char **env); //added env for the test
+// t_cmd		*pars(t_ptr **head, char *input, char **env); //added env for the test
+t_cmd	*pars(int last_exit_status, t_ptr **head, char *input, char **env);
 int			check_q(char *input, int i);
 int			checker_synx(char *input, char check);
 int			first_q(char *input);
@@ -220,5 +221,8 @@ void		append_arg(t_ptr **head, char ***args, char *word);
 void append_redir(t_redirs **list, t_redirs *new_redir);
 t_cmd *init_new_cmd(t_ptr **head);
 //////////////////	FOR PRINTING	/////////////////////////////////////////////
+
+///////////////////////////// ana mouhssine /////////////////////////////////////
+void shell_last_exit(int *i, int shell_last_exit);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 15:39:06 by mteffahi          #+#    #+#             */
-/*   Updated: 2025/07/12 02:56:45 by mteffahi         ###   ########.fr       */
+/*   Updated: 2025/07/13 03:21:51 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ int	first_q(char *input)
 		if (input[i] == '\'' || input[i] == '"' || input[i] == '(')
 		{
 			// if (input[i + 1] == '\'' || input[i + 1] == '"' || input[i + 1] == ')')
-				// return (ft_putstr_fd("cat: '': No such file or directory\n", 2), 0);
+				// return (ft_putstr_fd("cat: '': No such file or directory", 2), 0);
 			if (!(check_q(input, i)))
-				return (ft_putstr_fd("Syntax error\n", 2), 0);
+				return (ft_putstr_fd("Syntax error", 2), 0);
 		}
 	}
 	return (1);
@@ -177,7 +177,7 @@ int	splt(t_ptr **head, t_tkn **token, char *input, int *i)
 		(*i)++;
 		len++;
 	}
-	// printf("inp = %c\n", input[*i]);
+	// printf("inp = %c", input[*i]);
 	if (input[*i] == '$')
 		return (1);
 	vl = ft_mall(head, (len + 1));
@@ -204,13 +204,19 @@ int	splt(t_ptr **head, t_tkn **token, char *input, int *i)
 // 	tmp = *head;
 // 	while (tmp)
 // 	{
-// 		printf("token value %s , token type %d, token index %d\n", tmp->vl, tmp->tkn_typ, i);
+// 		printf("token value %s , token type %d, token index %d", tmp->vl, tmp->tkn_typ, i);
 // 		i++;
 // 		tmp = tmp->next;
 // 	}
 // }
 
-t_cmd	*pars(t_ptr **head, char *input, char **env)
+void shell_last_exit(int *i, int shell_last_exit)
+{
+	printf("%d", shell_last_exit);
+	(*i) += 2;
+}
+
+t_cmd	*pars(int last_exit_status, t_ptr **head, char *input, char **env)
 {
 	int		i;
 	t_tkn	*tkn_head;
@@ -232,7 +238,9 @@ t_cmd	*pars(t_ptr **head, char *input, char **env)
 			splt_quoted(head, &tkn_head, input, &i);
 		else if (input[i] && (input[i] == '|' || input[i] == '<' || input[i] == '>'))
 			handle_rdr(head, &tkn_head, input, &i);
-		else if (input[i] && input[i] == '$')
+		else if (input[i] == '$' && input[i + 1] == '?')
+			shell_last_exit(&i, last_exit_status);
+		else if (input[i] && input[i] == '$' && input[i + 1] != '\0')
 		{
 			// The variable expansion logic from your friend's parser
 			i++;
