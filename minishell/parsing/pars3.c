@@ -6,7 +6,7 @@
 /*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 20:09:53 by mteffahi          #+#    #+#             */
-/*   Updated: 2025/07/13 03:21:55 by mteffahi         ###   ########.fr       */
+/*   Updated: 2025/07/14 01:03:12 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,19 @@ static void cpy(char *vl, char *input, int pos, int len)
 	vl[tmp] = '\0';
 }
 
+static char	*two_qt(char *input, int *i)
+{
+	if (ft_strlen(input) == 2)
+	{
+		if (input[*i] == '\"' && input[(*i) + 1] == '\"')
+		{
+			(*i) += ft_strlen(input);
+			return (ft_strdup(input));
+		}
+	}
+	return (NULL);
+}
+
 int	splt_quoted(t_ptr **head, t_tkn **token, char *input, int *i)
 {
 	int			len;
@@ -34,6 +47,12 @@ int	splt_quoted(t_ptr **head, t_tkn **token, char *input, int *i)
 
 	if (!input)
 		return (ft_mall(head, 0), 0);
+	if (ft_strlen(input) == 2 && input[*i] == '\"' && input[(*i) + 1] == '\"')
+	{
+		vl = two_qt(input, i);
+		creat_tkn_node(head, token, vl, identify_tkn(vl));
+		return (0);
+	}
 	q_type = input[*i];
 	(*i)++;
 	len = 0;

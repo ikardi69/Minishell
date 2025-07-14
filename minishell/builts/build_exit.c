@@ -6,7 +6,7 @@
 /*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 17:19:47 by ilallali          #+#    #+#             */
-/*   Updated: 2025/07/14 00:50:08 by mteffahi         ###   ########.fr       */
+/*   Updated: 2025/07/14 00:51:31 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	exec_exit(t_cmd *command, t_shell *shell)
 	int	exit_code;
 
 	exit_code = shell->last_exit_status;
-	// write(1, "exit\n", 5); // hadi ra haydtha hit kitl3 exit joj marat
+	write(1, "exit\n", 5);
 	if (command->args[1])
 	{
 		if (is_valid_long_long(command->args[1]))

@@ -6,7 +6,7 @@
 /*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 15:39:06 by mteffahi          #+#    #+#             */
-/*   Updated: 2025/07/13 03:34:12 by mteffahi         ###   ########.fr       */
+/*   Updated: 2025/07/14 01:04:12 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -235,10 +235,9 @@ t_cmd	*pars(int last_exit_status, t_ptr **head, char *input, char **env)
 	env_hd = NULL;
 	env_hd = set_env_ls(head, env);
 	// (void)env; // To avoid unused variable warning for now
-	if (!input || !first_q(input) || !invalid_sqnc(input) || !little_check(input))
+	if (!input || !first_q(input) || !invalid_sqnc(input))
 		return (NULL);
 	i = 0;
-	printf("\n%s\n", input);
 	while (input[i])
 	{
 		if (input[i] && input[i] == ' ')
