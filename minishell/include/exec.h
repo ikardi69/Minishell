@@ -6,7 +6,7 @@
 /*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 13:49:54 by ilallali          #+#    #+#             */
-/*   Updated: 2025/07/15 19:06:16 by mteffahi         ###   ########.fr       */
+/*   Updated: 2025/07/15 23:31:23 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -227,5 +227,6 @@ void shell_last_exit(int *i, int shell_last_exit);
 int little_check(char *input);
 //////////////////////////////////// hadi putnbr ela wd shell last exit o blan new line f echo ////////////////////////
 void		ft_putnbr(int nbr);
+char *cpy_input(t_ptr **head, char *input); // to copy the input whout white spaces
 
 #endif
