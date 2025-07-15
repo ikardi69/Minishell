@@ -6,7 +6,7 @@
 /*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 15:39:06 by mteffahi          #+#    #+#             */
-/*   Updated: 2025/07/15 18:48:04 by mteffahi         ###   ########.fr       */
+/*   Updated: 2025/07/15 19:04:16 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,9 +210,28 @@ int	splt(t_ptr **head, t_tkn **token, char *input, int *i)
 // 	}
 // }
 
+
+void	ft_putnbr(int nbr)
+{
+	if (nbr < 0)
+	{
+		nbr *= -1;
+		write(1, "-", 1);
+		ft_putnbr(nbr);
+	}
+	else if (nbr > 9)
+	{
+		ft_putnbr(nbr / 10);
+		ft_putnbr(nbr % 10);
+	}
+	else
+		write(1, &(char){nbr + '0'}, 1);
+}
+
 void shell_last_exit(int *i, int shell_last_exit)
 {
-	printf("%d", shell_last_exit);
+	// printf("%d", shell_last_exit);
+	ft_putnbr(shell_last_exit);
 	(*i) += 2;
 }
 
