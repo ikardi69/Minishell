@@ -6,7 +6,7 @@
 /*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 15:39:06 by mteffahi          #+#    #+#             */
-/*   Updated: 2025/07/15 19:04:16 by mteffahi         ###   ########.fr       */
+/*   Updated: 2025/07/15 20:20:52 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	first_q(char *input)
 			// if (input[i + 1] == '\'' || input[i + 1] == '"' || input[i + 1] == ')')
 				// return (ft_putstr_fd("cat: '': No such file or directory", 2), 0);
 			if (!(check_q(input, i)))
-				return (ft_putstr_fd("Syntax error", 2), 0);
+				return (ft_putstr_fd("Syntax error\n", 2), 0);
 		}
 	}
 	return (1);
