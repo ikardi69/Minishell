@@ -6,7 +6,7 @@
 /*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 15:39:06 by mteffahi          #+#    #+#             */
-/*   Updated: 2025/07/15 20:20:52 by mteffahi         ###   ########.fr       */
+/*   Updated: 2025/07/15 23:30:19 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -243,16 +243,49 @@ int little_check(char *input)
 		return (1);
 }
 
-t_cmd	*pars(int last_exit_status, t_ptr **head, char *input, char **env)
+char *cpy_input(t_ptr **head, char *input)
+{
+    int total_len = 0;
+    int non_whitespace_count = 0;
+    int i, j;
+    char *result;// echo	hi
+    
+    while (input[total_len])
+    {
+        if (!(input[total_len] >= 9 && input[total_len] <= 13))
+            non_whitespace_count++;
+        total_len++;
+    }
+    
+    result = ft_mall(head, non_whitespace_count + 1);
+    
+    i = 0;
+    j = 0;
+    while (input[i])
+    {
+        if (!(input[i] >= 9 && input[i] <= 13))
+        {
+            result[j] = input[i];
+            j++;
+        }
+        i++;
+    }
+    result[j] = '\0';
+    return (result);
+}
+
+t_cmd	*pars(int last_exit_status, t_ptr **head, char *inp, char **env)
 {
 	int		i;
 	t_tkn	*tkn_head;
 	t_cmd	*final_cmd_list;
 	t_env	*env_hd; // This seems unused for now
+	char	*input;
 
 	tkn_head = NULL;
 	env_hd = NULL;
 	env_hd = set_env_ls(head, env);
+	input = cpy_input(head, inp);
 	// (void)env; // To avoid unused variable warning for now
 	if (!input || !first_q(input) || !invalid_sqnc(input))
 		return (NULL);
