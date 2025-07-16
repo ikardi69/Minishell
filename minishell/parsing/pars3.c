@@ -6,7 +6,7 @@
 /*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 20:09:53 by mteffahi          #+#    #+#             */
-/*   Updated: 2025/07/14 01:03:12 by mteffahi         ###   ########.fr       */
+/*   Updated: 2025/07/16 23:18:31 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,19 @@ static void cpy(char *vl, char *input, int pos, int len)
 	vl[tmp] = '\0';
 }
 
-static char	*two_qt(char *input, int *i)
+static char	*two_qt(t_ptr **head, char *input, int *i)
 {
 	if (ft_strlen(input) == 2)
 	{
 		if (input[*i] == '\"' && input[(*i) + 1] == '\"')
 		{
 			(*i) += ft_strlen(input);
-			return (ft_strdup(input));
+			return (ft_strdup1(head, input));
+		}
+		else if (input[*i] == '\'' && input[(*i) + 1] == '\'')
+		{
+			(*i) += ft_strlen(input);
+			return (ft_strdup1(head, input));
 		}
 	}
 	return (NULL);
@@ -49,7 +54,13 @@ int	splt_quoted(t_ptr **head, t_tkn **token, char *input, int *i)
 		return (ft_mall(head, 0), 0);
 	if (ft_strlen(input) == 2 && input[*i] == '\"' && input[(*i) + 1] == '\"')
 	{
-		vl = two_qt(input, i);
+		vl = two_qt(head, input, i);
+		creat_tkn_node(head, token, vl, identify_tkn(vl));
+		return (0);
+	}
+	if (ft_strlen(input) == 2 && input[*i] == '\'' && input[(*i) + 1] == '\'')
+	{
+		vl = two_qt(head, input, i);
 		creat_tkn_node(head, token, vl, identify_tkn(vl));
 		return (0);
 	}
@@ -65,7 +76,7 @@ int	splt_quoted(t_ptr **head, t_tkn **token, char *input, int *i)
 	if (input[*i] == q_type)
 		(*i)++;  // Skip closing quote
 	if (len == 0 && (*i) >= 2 && input[(*i) - 3] != '=')
-		return (ft_putstr_fd("cat: '': No such file or directory", 2), 0);
+		return (0);
 	vl = ft_mall(head, (len + 1));
 	cpy(vl, input, pos, len);
 	creat_tkn_node(head, token, vl, identify_tkn(vl));
