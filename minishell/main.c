@@ -6,7 +6,7 @@
 /*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 17:32:05 by ilallali          #+#    #+#             */
-/*   Updated: 2025/07/14 00:47:45 by mteffahi         ###   ########.fr       */
+/*   Updated: 2025/07/16 22:43:37 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	process_input(char *line, t_shell *shell, char **envp)
 
 	memory_head = NULL;
 	add_history(line);
-	command_list = pars(shell->last_exit_status, &memory_head, line, envp);
+	command_list = pars(shell->last_exit_status, &memory_head, line, shell->env_list);
 	
 	if (command_list)
 	{

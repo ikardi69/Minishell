@@ -6,7 +6,7 @@
 /*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 15:39:06 by mteffahi          #+#    #+#             */
-/*   Updated: 2025/07/16 22:30:49 by mteffahi         ###   ########.fr       */
+/*   Updated: 2025/07/16 22:57:03 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -274,17 +274,17 @@ char *cpy_input(t_ptr **head, char *input)
     return (result);
 }
 
-t_cmd	*pars(int last_exit_status, t_ptr **head, char *inp, char **env)
+t_cmd	*pars(int last_exit_status, t_ptr **head, char *inp, t_env_copy **env_hd)
 {
 	int		i;
 	t_tkn	*tkn_head;
 	t_cmd	*final_cmd_list;
-	t_env	*env_hd; // This seems unused for now
+	// t_env	*env_hd; // This seems unused for now
 	char	*input;
 
 	tkn_head = NULL;
-	env_hd = NULL;
-	env_hd = set_env_ls(head, env);
+	// env_hd = NULL;
+	// env_hd = set_env_ls(head, env);
 	input = cpy_input(head, inp);
 	// (void)env; // To avoid unused variable warning for now
 	if (!input || !first_q(input) || !invalid_sqnc(input))
@@ -304,9 +304,10 @@ t_cmd	*pars(int last_exit_status, t_ptr **head, char *inp, char **env)
 		{
 			// The variable expansion logic from your friend's parser
 			i++;
-			char *whole_vr = get_vr(&env_hd, head, gt_nm(input, &i, head));
-			char *val = extract_vl(head, whole_vr);
-			creat_tkn_node(head, &tkn_head, val, identify_tkn(val));
+			char *whole_vr = get_vr(env_hd, head, gt_nm(input, &i, head));
+			// printf("whole vr = %s\n", whole_vr);
+			// char *val = extract_vl(head, env_hd, whole_vr); // not needed anymore
+			creat_tkn_node(head, &tkn_head, whole_vr, identify_tkn(whole_vr));
 			// ... (this part is complex, keeping it as is for now)
 		}
 		else if (input[i])

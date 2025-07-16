@@ -6,7 +6,7 @@
 /*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 13:49:54 by ilallali          #+#    #+#             */
-/*   Updated: 2025/07/15 23:31:23 by mteffahi         ###   ########.fr       */
+/*   Updated: 2025/07/16 22:43:05 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,7 +185,8 @@ void		ft_lstadd_back1(t_ptr **lst, t_ptr *new);
 void		ft_lstclear1(t_ptr **lst, void (*del)(void*));
 /*parsing starting*/
 // t_cmd		*pars(t_ptr **head, char *input, char **env); //added env for the test
-t_cmd	*pars(int last_exit_status, t_ptr **head, char *input, char **env);
+// t_cmd	*pars(int last_exit_status, t_ptr **head, char *input, char **env); // changed for env
+t_cmd	*pars(int last_exit_status, t_ptr **head, char *inp, t_env_copy **env_hd);
 int			check_q(char *input, int i);
 int			checker_synx(char *input, char check);
 int			first_q(char *input);
@@ -210,8 +211,8 @@ void		ft_lstadd_back_env(t_env **lst, t_env *new);
 t_env		*set_env_ls(t_ptr **head_ptr, char **env);
 void		set_node(t_env **head, t_ptr **ptr_head, char *env_val);
 /************************** getting var name **************************************************/
-char		*get_vr(t_env **head, t_ptr **head_ptr, char *name);
-char		*extract_vl(t_ptr **ptr_head, char *variable);
+// char		*get_vr(t_env **head, t_ptr **head_ptr, char *name); // the old function
+// char		*extract_vl(t_ptr **ptr_head, char *variable); // old one
 int 		ft_strcmp_vr(char *s1, char *s2, size_t size);
 /************************** creating the cmd **************************************************/
 t_cmd		*parse_tokens_to_commands(t_ptr **head, t_tkn *tokens);
@@ -228,5 +229,8 @@ int little_check(char *input);
 //////////////////////////////////// hadi putnbr ela wd shell last exit o blan new line f echo ////////////////////////
 void		ft_putnbr(int nbr);
 char *cpy_input(t_ptr **head, char *input); // to copy the input whout white spaces
+////////////////////////////// new get variable function ///////////////////////////////////////////////////////
+char	*get_vr(t_env_copy **head, t_ptr **head_ptr, char *name);
+char	*extract_vl(t_ptr **ptr_head, t_env_copy **env_head, char *var_name);
 
 #endif
