@@ -6,7 +6,7 @@
 /*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 15:39:06 by mteffahi          #+#    #+#             */
-/*   Updated: 2025/07/16 22:57:03 by mteffahi         ###   ########.fr       */
+/*   Updated: 2025/07/17 22:34:46 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -256,9 +256,7 @@ char *cpy_input(t_ptr **head, char *input)
             non_whitespace_count++;
         total_len++;
     }
-    
     result = ft_mall(head, non_whitespace_count + 1);
-    
     i = 0;
     j = 0;
     while (input[i])
@@ -274,6 +272,28 @@ char *cpy_input(t_ptr **head, char *input)
     return (result);
 }
 
+int	last_pipe_check(t_tkn **head)
+{
+	t_tkn	*tmp;
+
+	if (!*head)
+		return (0);
+	tmp = *head;
+	while (tmp)
+	{
+		if (tmp->tkn_typ == 2)
+		{
+			if (tmp->next)
+			{
+				if (tmp->next->tkn_typ == 2)
+					return (ft_putstr_fd("syntax error near unexpected token `|'\n", 1), 0);
+			}
+		}
+		tmp = tmp->next;
+	}
+	return (1);
+}
+
 t_cmd	*pars(int last_exit_status, t_ptr **head, char *inp, t_env_copy **env_hd)
 {
 	int		i;
@@ -286,7 +306,6 @@ t_cmd	*pars(int last_exit_status, t_ptr **head, char *inp, t_env_copy **env_hd)
 	// env_hd = NULL;
 	// env_hd = set_env_ls(head, env);
 	input = cpy_input(head, inp);
-	// (void)env; // To avoid unused variable warning for now
 	if (!input || !first_q(input) || !invalid_sqnc(input))
 		return (NULL);
 	i = 0;
@@ -302,17 +321,16 @@ t_cmd	*pars(int last_exit_status, t_ptr **head, char *inp, t_env_copy **env_hd)
 			shell_last_exit(&i, last_exit_status);
 		else if (input[i] && input[i] == '$' && input[i + 1] != '\0')
 		{
-			// The variable expansion logic from your friend's parser
 			i++;
 			char *whole_vr = get_vr(env_hd, head, gt_nm(input, &i, head));
-			// printf("whole vr = %s\n", whole_vr);
 			// char *val = extract_vl(head, env_hd, whole_vr); // not needed anymore
 			creat_tkn_node(head, &tkn_head, whole_vr, identify_tkn(whole_vr));
-			// ... (this part is complex, keeping it as is for now)
 		}
 		else if (input[i])
 			splt(head, &tkn_head, input, &i);
 	}
+	if (!last_pipe_check(&tkn_head))
+		return (NULL);
 	final_cmd_list = parse_tokens_to_commands(head, tkn_head);
 	// printi_zab(&tkn_head);
 	return (final_cmd_list); // Return the final list
