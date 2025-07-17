@@ -6,7 +6,7 @@
 /*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 15:39:06 by mteffahi          #+#    #+#             */
-/*   Updated: 2025/07/17 22:34:46 by mteffahi         ###   ########.fr       */
+/*   Updated: 2025/07/17 22:38:10 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -283,11 +283,8 @@ int	last_pipe_check(t_tkn **head)
 	{
 		if (tmp->tkn_typ == 2)
 		{
-			if (tmp->next)
-			{
-				if (tmp->next->tkn_typ == 2)
-					return (ft_putstr_fd("syntax error near unexpected token `|'\n", 1), 0);
-			}
+			if (tmp->next && tmp->next->tkn_typ == 2)
+				return (ft_putstr_fd("syntax error near unexpected token `|'\n", 1), 0);
 		}
 		tmp = tmp->next;
 	}
