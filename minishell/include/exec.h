@@ -6,7 +6,7 @@
 /*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 13:49:54 by ilallali          #+#    #+#             */
-/*   Updated: 2025/07/17 22:40:04 by mteffahi         ###   ########.fr       */
+/*   Updated: 2025/07/19 01:47:59 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -234,5 +234,7 @@ char	*get_vr(t_env_copy **head, t_ptr **head_ptr, char *name);
 char	*extract_vl(t_ptr **ptr_head, t_env_copy **env_head, char *var_name);
 ///////////////////////////// empty PIPE check //////////////////////////////////////////////////////////////////
 int		last_pipe_check(t_tkn **head);
+//////////////////////////////////////////////////////
+void get_shell_pid_str(t_ptr **head, int *pos);
 
 #endif

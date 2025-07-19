@@ -6,7 +6,7 @@
 /*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 15:39:06 by mteffahi          #+#    #+#             */
-/*   Updated: 2025/07/17 22:38:10 by mteffahi         ###   ########.fr       */
+/*   Updated: 2025/07/19 01:50:50 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -291,6 +291,45 @@ int	last_pipe_check(t_tkn **head)
 	return (1);
 }
 
+
+void get_shell_pid_str(t_ptr **head, int *pos)
+{
+    int fd = open("/proc/self/stat", O_RDONLY);
+    if (fd == -1)
+	{
+		(*pos) += 1;
+        return ;
+	}
+	
+    char buf[128];
+    ssize_t bytes = read(fd, buf, sizeof(buf) - 1);
+    close(fd);
+    if (bytes <= 0)
+	{
+		(*pos) += 1;
+		return ;
+	}
+	
+    buf[bytes] = '\0';
+	
+    // Extract PID: it's the first field, space-delimited
+    int i = 0;
+    while (buf[i] && buf[i] != ' ')
+	i++;
+
+    char *pid_str = ft_mall(head, (i + 1));
+    // if (!pid_str)
+    //     return NULL;
+    for (int j = 0; j < i; j++)
+	pid_str[j] = buf[j];
+    pid_str[i] = '\0';
+	
+	(*pos) += 1;
+	ft_putstr_fd(pid_str, 1);
+	ft_putstr_fd(": command not found\n", 1);
+    // return pid_str;
+}
+
 t_cmd	*pars(int last_exit_status, t_ptr **head, char *inp, t_env_copy **env_hd)
 {
 	int		i;
@@ -300,6 +339,7 @@ t_cmd	*pars(int last_exit_status, t_ptr **head, char *inp, t_env_copy **env_hd)
 	char	*input;
 
 	tkn_head = NULL;
+	final_cmd_list = NULL;
 	// env_hd = NULL;
 	// env_hd = set_env_ls(head, env);
 	input = cpy_input(head, inp);
@@ -314,6 +354,11 @@ t_cmd	*pars(int last_exit_status, t_ptr **head, char *inp, t_env_copy **env_hd)
 			splt_quoted(head, &tkn_head, input, &i);
 		else if (input[i] && (input[i] == '|' || input[i] == '<' || input[i] == '>'))
 			handle_rdr(head, &tkn_head, input, &i);
+		else if (input[i] && (input[i] == '$' && input[i + 1] == '$'))
+		{
+			get_shell_pid_str(head, &i);
+			break ;
+		}
 		else if (input[i] == '$' && input[i + 1] == '?')
 			shell_last_exit(&i, last_exit_status);
 		else if (input[i] && input[i] == '$' && input[i + 1] != '\0')

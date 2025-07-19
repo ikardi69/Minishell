@@ -6,7 +6,7 @@
 /*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 17:12:43 by mteffahi          #+#    #+#             */
-/*   Updated: 2025/07/16 22:55:41 by mteffahi         ###   ########.fr       */
+/*   Updated: 2025/07/19 01:24:54 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -353,7 +353,6 @@ char	*get_vr(t_env_copy **head, t_ptr **head_ptr, char *name)
 	
 	if (!head || !*head || !name)
 		return (NULL);
-	
 	tmp = *head;
 	name_len = ft_strlen(name);
 	
