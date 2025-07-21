@@ -6,7 +6,7 @@
 /*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 15:39:06 by mteffahi          #+#    #+#             */
-/*   Updated: 2025/07/19 01:50:50 by mteffahi         ###   ########.fr       */
+/*   Updated: 2025/07/21 17:57:10 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -228,10 +228,12 @@ void	ft_putnbr(int nbr)
 		write(1, &(char){nbr + '0'}, 1);
 }
 
-void shell_last_exit(int *i, int shell_last_exit)
+void shell_last_exit(char *input,int *i, int shell_last_exit)
 {
 	// printf("%d", shell_last_exit);
 	ft_putnbr(shell_last_exit);
+	if (ft_strlen(input) == 2 && input[0] == '$' && input[1] == '?')
+		ft_putchar_fd('\n', 1);
 	(*i) += 2;
 }
 
@@ -360,11 +362,12 @@ t_cmd	*pars(int last_exit_status, t_ptr **head, char *inp, t_env_copy **env_hd)
 			break ;
 		}
 		else if (input[i] == '$' && input[i + 1] == '?')
-			shell_last_exit(&i, last_exit_status);
-		else if (input[i] && input[i] == '$' && input[i + 1] != '\0')
+			shell_last_exit(input, &i, last_exit_status);
+		else if (input[i] && input[i] == '$')
 		{
 			i++;
 			char *whole_vr = get_vr(env_hd, head, gt_nm(input, &i, head));
+			printf("whole %s\n", whole_vr);
 			// char *val = extract_vl(head, env_hd, whole_vr); // not needed anymore
 			creat_tkn_node(head, &tkn_head, whole_vr, identify_tkn(whole_vr));
 		}

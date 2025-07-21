@@ -6,7 +6,7 @@
 /*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 13:49:54 by ilallali          #+#    #+#             */
-/*   Updated: 2025/07/19 01:47:59 by mteffahi         ###   ########.fr       */
+/*   Updated: 2025/07/21 17:56:59 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -224,7 +224,8 @@ t_cmd *init_new_cmd(t_ptr **head);
 //////////////////	FOR PRINTING	/////////////////////////////////////////////
 
 ///////////////////////////// ana mouhssine /////////////////////////////////////
-void shell_last_exit(int *i, int shell_last_exit);
+// void shell_last_exit(int *i, int shell_last_exit); //old one
+void shell_last_exit(char *input,int *i, int shell_last_exit);
 int little_check(char *input);
 //////////////////////////////////// hadi putnbr ela wd shell last exit o blan new line f echo ////////////////////////
 void		ft_putnbr(int nbr);
