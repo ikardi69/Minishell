@@ -6,7 +6,7 @@
 /*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 13:49:54 by ilallali          #+#    #+#             */
-/*   Updated: 2025/08/15 15:28:00 by mteffahi         ###   ########.fr       */
+/*   Updated: 2025/08/17 17:17:13 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ typedef enum e_builtin_id
 
 typedef struct s_parse_ctx
 {
+	t_shell	*shell;
     t_ptr   **head;
     char    *input;
     int     *i;
@@ -218,7 +219,7 @@ int	    	invalid_sqnc(char *input);
 int			is_qtd(char *input);
 void		ft_lstadd_back_tkn(t_tkn **lst, t_tkn *new);
 t_tkn_type	identify_tkn(char *val);
-int			splt_quoted(t_ptr **head, t_tkn **token, char *input, int *i);
+// int			splt_quoted(t_ptr **head, t_tkn **token, char *input, int *i); EDITED
 int			splt(t_ptr **head, t_tkn **token, char *input, int *i);
 void		creat_tkn_node(t_ptr **head, t_tkn **tkn_head, char *val, t_tkn_type type);
 /**********************************************************************************************/
@@ -281,5 +282,7 @@ void	create_and_add_token(t_ptr **head, t_tkn **token, char *vl);
 // int		is_after_equals(char *input, int i);
 // int		splt_after_equals(t_ptr **head, t_tkn **token, char *input, int *i);
 void	cpy(char *vl, char *input, int pos, int len);
+int		splt_quoted(t_parse_ctx *ctx);
+char	*ft_itoa1(t_ptr **head, int n);
 
 #endif

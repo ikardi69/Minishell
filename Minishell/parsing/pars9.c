@@ -6,7 +6,7 @@
 /*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 15:23:59 by mteffahi          #+#    #+#             */
-/*   Updated: 2025/08/15 15:28:09 by mteffahi         ###   ########.fr       */
+/*   Updated: 2025/08/15 17:44:26 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,3 +75,62 @@ void	add_node(t_ptr **head, void *ptr)
 //     return 0;
 // }
 
+void	*ft_memcpy1(void *dest, const void *src, size_t n)
+{
+	unsigned char		*dptr;
+	const unsigned char	*sptr;
+	size_t				i;
+
+	if (!dest && !src)
+		return (NULL);
+	i = 0;
+	dptr = (unsigned char *)dest;
+	sptr = (const unsigned char *)src;
+	if (dptr == sptr)
+		return (dptr);
+	while (i < n)
+	{
+		dptr[i] = sptr[i];
+		i++;
+	}
+	return (dest);
+}
+
+char	*ft_strdup1(t_ptr **head, const char *s)
+{
+	size_t	size;
+	char	*result;
+
+	if (!s)
+		return (NULL);
+	size = ft_strlen(s) + 1;
+	result = ft_mall(head, size);
+	if (!result)
+		return (NULL);
+	ft_memcpy1(result, s, ft_strlen(s));
+	result[ft_strlen(s)] = '\0';
+	return (result);
+}
+
+char	*ft_strjoin1(t_ptr **head, char const *s1, char const *s2)
+{
+	char	*result;
+	size_t	size;
+
+	if (!s1 || !s2)
+		return (NULL);
+	if (s1[0] == '\0' && s2[0] == '\0')
+		return (ft_strdup1(head, ""));
+	if (s1[0] == '\0')
+		return (ft_strdup1(head, s2));
+	if (s2[0] == '\0')
+		return (ft_strdup1(head, s1));
+	size = (ft_strlen(s1) + ft_strlen(s2)) + 1;
+	result = ft_mall(head, size);
+	if (!result)
+		return (NULL);
+	ft_memcpy1(result, s1, ft_strlen(s1));
+	ft_memcpy1(result + ft_strlen(s1), s2, ft_strlen(s2));
+	result[size - 1] = '\0';
+	return (result);
+}

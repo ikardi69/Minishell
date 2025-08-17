@@ -6,7 +6,7 @@
 /*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 15:39:06 by mteffahi          #+#    #+#             */
-/*   Updated: 2025/08/15 15:27:39 by mteffahi         ###   ########.fr       */
+/*   Updated: 2025/08/17 17:09:17 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,15 @@ int	process_char_at_index(t_shell *shell, t_parse_ctx *ctx)
 {
 	if (ctx->input[*ctx->i] && ctx->input[*ctx->i] == ' ')
 		(*ctx->i)++;
-	else if (ctx->input[*ctx->i] && (ctx->input[*ctx->i] == '\'' || ctx->input[*ctx->i] == '"'))
-		splt_quoted(ctx->head, ctx->tkn_head, ctx->input, ctx->i);
-	else if (ctx->input[*ctx->i] && (ctx->input[*ctx->i] == '|' || ctx->input[*ctx->i] == '<' || ctx->input[*ctx->i] == '>'))
+	else if (ctx->input[*ctx->i]
+		&& (ctx->input[*ctx->i] == '\'' || ctx->input[*ctx->i] == '"'))
+		splt_quoted(ctx);		//splt_quoted(ctx->head, ctx->tkn_head, ctx->input, ctx->i);
+	else if (ctx->input[*ctx->i]
+		&& (ctx->input[*ctx->i] == '|' || ctx->input[*ctx->i] == '<'
+			|| ctx->input[*ctx->i] == '>'))
 		handle_rdr(ctx->head, ctx->tkn_head, ctx->input, ctx->i);
-	else if (ctx->input[*ctx->i] && (ctx->input[*ctx->i] == '$' && ctx->input[*ctx->i + 1] == '$'))
+	else if (ctx->input[*ctx->i]
+		&& (ctx->input[*ctx->i] == '$' && ctx->input[*ctx->i + 1] == '$'))
 		return (handle_shell_pid(ctx->head, ctx->i));
 	else if (ctx->input[*ctx->i] == '$' && ctx->input[*ctx->i + 1] == '?')
 		shell_last_exit(ctx->input, ctx->i, shell->last_exit_status);
@@ -62,6 +66,7 @@ int	tokenize_input(t_shell *shell, t_ptr **head, char *input, t_tkn **tkn_head)
 	int			i;
 
 	i = 0;
+	ctx.shell = shell;
 	ctx.head = head;
 	ctx.input = input;
 	ctx.i = &i;
@@ -74,18 +79,16 @@ int	tokenize_input(t_shell *shell, t_ptr **head, char *input, t_tkn **tkn_head)
 	return (1);
 }
 
-
-
 // Handle variable expansion
 void	handle_variable_expansion(t_shell *shell, t_parse_ctx *ctx)
 {
 	char	*whole_vr;
 
 	(*ctx->i)++;
-	whole_vr = get_vr(shell->env_list, ctx->head, gt_nm(ctx->input, ctx->i, ctx->head));
+	whole_vr = get_vr(shell->env_list, ctx->head,
+			gt_nm(ctx->input, ctx->i, ctx->head));
 	creat_tkn_node(ctx->head, ctx->tkn_head, whole_vr, identify_tkn(whole_vr));
 }
-
 
 // Main parsing function - now using t_shell struct (3 parameters instead of 4)
 t_cmd	*pars(t_shell *shell, t_ptr **head, char *inp)
