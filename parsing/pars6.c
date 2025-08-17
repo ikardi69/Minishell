@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars6.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ilallali <ilallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 15:14:45 by mteffahi          #+#    #+#             */
-/*   Updated: 2025/08/17 18:42:55 by mteffahi         ###   ########.fr       */
+/*   Updated: 2025/08/17 22:56:10 by ilallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,6 @@ int	last_pipe_check(t_tkn **head)
 		if (tmp->tkn_typ == 2)
 		{
 			if (tmp->next && tmp->next->tkn_typ == 2)
-				return (ft_putstr_fd("syntax error near unexpected token `|'\n",
-						1), 0);
-			else if (tmp->next && tmp->next->tkn_typ == 1)
 				return (ft_putstr_fd("syntax error near unexpected token `|'\n",
 						1), 0);
 		}

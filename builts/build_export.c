@@ -3,33 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   build_export.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ilallali <ilallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 15:15:19 by ilallali          #+#    #+#             */
-/*   Updated: 2025/08/17 16:57:44 by mteffahi         ###   ########.fr       */
+/*   Updated: 2025/08/17 22:40:04 by ilallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/exec.h"
-
-static int	is_valid_identifier(const char *str)
-{
-	int	i;
-
-	i = 0;
-	if (!str || (!ft_isalpha(str[0]) && str[0] != '_'))
-		return (0);
-	i = 1;
-	while (str[i])
-	{
-		if (str[i] == '=' || (str[i] == '+' && str[i + 1] == '='))
-			return (1);
-		if (!ft_isalnum(str[i]) && str[i] != '_')
-			return (0);
-		i++;
-	}
-	return (1);
-}
 
 static int	parse_assign(char *arg, char **key, char **value)
 {
@@ -99,33 +80,43 @@ static void	process_export_arg(char *arg, t_shell *shell)
 		free(value);
 }
 
-int	exec_export(t_cmd *command, t_shell *shell)
+static int	process_and_advance(t_cmd *command, t_shell *shell, int i)
 {
-	int		i;
 	char	*full_arg;
 	char	*current_arg;
+
+	current_arg = command->args[i];
+	if (current_arg[ft_strlen(current_arg) - 1] == '='
+		&& command->args[i + 1])
+	{
+		full_arg = ft_strjoin(current_arg, command->args[i + 1]);
+		if (!full_arg)
+			return (-1);
+		process_export_arg(full_arg, shell);
+		free(full_arg);
+		return (2);
+	}
+	else
+	{
+		process_export_arg(current_arg, shell);
+		return (1);
+	}
+}
+
+int	exec_export(t_cmd *command, t_shell *shell)
+{
+	int	i;
+	int	consumed;
 
 	i = 1;
 	if (!command->args[i])
 		return (print_export_format(shell));
 	while (command->args[i])
 	{
-		current_arg = command->args[i];
-		if (current_arg[ft_strlen(current_arg) - 1] == '='
-			&& command->args[i + 1])
-		{
-			full_arg = ft_strjoin(current_arg, command->args[i + 1]);
-			if (!full_arg)
-				return (1); // Malloc error
-			process_export_arg(full_arg, shell);
-			free(full_arg);
-			i += 2; // We consumed two arguments, so skip ahead
-		}
-		else
-		{
-			process_export_arg(current_arg, shell);
-			i += 1; // We consumed one argument
-		}
+		consumed = process_and_advance(command, shell, i);
+		if (consumed == -1)
+			return (1);
+		i += consumed;
 	}
 	return (0);
 }
