@@ -6,7 +6,7 @@
 /*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 13:49:54 by ilallali          #+#    #+#             */
-/*   Updated: 2025/08/17 17:17:13 by mteffahi         ###   ########.fr       */
+/*   Updated: 2025/08/17 19:02:40 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,7 +190,6 @@ int	print_export_format(t_shell *shell);
 int	ft_isalpha(int c);
 char	*ft_strjoin(char const *s1, char const *s2);
 void	cleanup_heredocs(t_cmd *cmd_list);
-void	print_cmd_list_debug(t_cmd *cmd_list);;
 int	process_heredocs(t_cmd *cmd_list);
 int	execute_single_heredoc(t_redirs *redir);
 void handle_heredoc_read_child(const char *delimiter, const char *temp_filename);

@@ -6,7 +6,7 @@
 /*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 15:23:59 by mteffahi          #+#    #+#             */
-/*   Updated: 2025/08/15 17:44:26 by mteffahi         ###   ########.fr       */
+/*   Updated: 2025/08/17 18:01:17 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,49 +31,6 @@ void	add_node(t_ptr **head, void *ptr)
 	}
 	ft_lstadd_back1(head, new_node);
 }
-
-// int	is_after_equals(char *input, int i)
-// {
-// 	if (i == 0)
-// 		return (0);
-// 	if (i > 0 && input[i - 1] == '=')
-// 		return (1);
-// 	return (0);
-// }
-
-// int splt_after_equals(t_ptr **head, t_tkn **token, char *input, int *i)
-// {
-//     int start = *i;
-
-//     // Move backwards to include variable name before '='
-//     while (start > 0 && input[start - 1] != ' ' && input[start - 1] != '\t')
-//         start--;
-
-//     // Move forward from '=' to capture full value
-//     (*i)++; // move past '='
-
-//     if (input[*i] == '\'' || input[*i] == '"')
-//     {
-//         char quote = input[*i];
-//         (*i)++;
-//         while (input[*i] && input[*i] != quote)
-//             (*i)++;
-//         if (input[*i] == quote)
-//             (*i)++;
-//     }
-//     else
-//     {
-//         while (input[*i] && input[*i] != ' ' && input[*i] != '\t')
-//             (*i)++;
-//     }
-
-//     // Copy the full "var=value" including quotes if they exist
-//     char *vl = ft_mall(head, (*i - start) + 1);
-//     cpy(vl, input, start, (*i - start));
-//     creat_tkn_node(head, token, vl, identify_tkn(vl));
-
-//     return 0;
-// }
 
 void	*ft_memcpy1(void *dest, const void *src, size_t n)
 {
@@ -133,4 +90,23 @@ char	*ft_strjoin1(t_ptr **head, char const *s1, char const *s2)
 	ft_memcpy1(result + ft_strlen(s1), s2, ft_strlen(s2));
 	result[size - 1] = '\0';
 	return (result);
+}
+
+int	expand_var(char *input, int *i, t_tkn **tkn_head, t_ptr **head_ptr)
+{
+	const char	*env;
+	const char	*nm;
+
+	(*i)++;
+	nm = gt_nm(input, i, head_ptr);
+	env = ft_strdup1(head_ptr, getenv(nm));
+	if (!env)
+	{
+		(*i)++;
+		ft_mall(head_ptr, 0);
+		return (ft_putstr_fd("", 1), 0);
+	}
+	creat_tkn_node(head_ptr, tkn_head,
+		(char *)env, identify_tkn(((char *)env)));
+	return (1);
 }

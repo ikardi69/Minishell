@@ -6,7 +6,7 @@
 /*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 15:16:54 by mteffahi          #+#    #+#             */
-/*   Updated: 2025/08/13 15:17:14 by mteffahi         ###   ########.fr       */
+/*   Updated: 2025/08/17 18:44:13 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ int	first_q(char *input)
 	return (1);
 }
 
-void	creat_tkn_node(t_ptr **head, t_tkn **tkn_head, char *val, t_tkn_type type)
+void	creat_tkn_node(t_ptr **head, t_tkn **tkn_head,
+		char *val, t_tkn_type type)
 {
 	t_tkn	*node;
 

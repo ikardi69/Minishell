@@ -6,13 +6,13 @@
 /*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 14:57:43 by mteffahi          #+#    #+#             */
-/*   Updated: 2025/08/13 15:19:29 by mteffahi         ###   ########.fr       */
+/*   Updated: 2025/08/17 18:10:22 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/exec.h"
 
-t_tkn_type identify_tkn(char *val)
+t_tkn_type	identify_tkn(char *val)
 {
 	if (!val || !*val)
 		return (NULL_Tk);

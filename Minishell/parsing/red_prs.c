@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   red_prs.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ilallali <ilallali@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 15:44:40 by mteffahi          #+#    #+#             */
-/*   Updated: 2025/07/09 23:52:01 by ilallali         ###   ########.fr       */
+/*   Updated: 2025/08/17 19:04:32 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*extr_qstr(t_ptr **head, char *str)
 		start++;
 	start++;
 	end = start;
-	while (str[end] && str[end] != '"'&& str[end] != '\'')
+	while (str[end] && str[end] != '"' && str[end] != '\'')
 		end++;
 	quoted = ft_mall(head, ((end - start) + 1));
 	while (start < end)
@@ -37,4 +37,3 @@ char	*extr_qstr(t_ptr **head, char *str)
 	quoted[i] = '\0';
 	return (quoted);
 }
-

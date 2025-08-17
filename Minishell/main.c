@@ -6,7 +6,7 @@
 /*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 17:32:05 by ilallali          #+#    #+#             */
-/*   Updated: 2025/08/15 14:10:33 by mteffahi         ###   ########.fr       */
+/*   Updated: 2025/08/17 19:02:58 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ static void	process_input(char *line, t_shell *shell, char **envp)
 	memory_head = NULL;
 	add_history(line);
 	command_list = pars(shell, &memory_head, line);
-	print_cmd_list_debug(command_list);
 	if (command_list)
 	{
 		if (process_heredocs(command_list) == 0)

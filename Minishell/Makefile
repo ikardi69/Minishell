@@ -10,8 +10,9 @@ SRC = main.c execution/check_exec.c parse_to_cmd.c utils/nodes_managemet.c built
 	builts/build_exit.c execution/redirections.c execution/redirections_utils.c execution/pipes.c \
 	signal/signal_handler.c utils/heredoc.c  \
     parsing/ft_pcollector.c  parsing/pars.c  parsing/pars2.c  parsing/pars3.c  parsing/red_prs.c  parsing/pars4.c \
-	parsing/strc_cr.c parsing/printing.c func/funct5.c execution/pipes_utils.c parsing/pars5.c \
-	parsing/pars6.c parsing/pars7.c parsing/pars8.c parsing/pars9.c
+	parsing/strc_cr.c func/funct5.c execution/pipes_utils.c parsing/pars5.c \
+	parsing/pars6.c parsing/pars7.c parsing/pars8.c parsing/pars9.c parsing/pars10.c parsing/pars11.c \
+	parsing/pars12.c
 
 OBJ = ${SRC:.c=.o}
 HEADER = include/exec.h
