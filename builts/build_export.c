@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   build_export.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ilallali <ilallali@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mteffahi <mteffahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 15:15:19 by ilallali          #+#    #+#             */
-/*   Updated: 2025/08/17 22:40:04 by ilallali         ###   ########.fr       */
+/*   Updated: 2025/08/21 19:25:42 by mteffahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,9 @@ static int	process_and_advance(t_cmd *command, t_shell *shell, int i)
 
 	current_arg = command->args[i];
 	if (current_arg[ft_strlen(current_arg) - 1] == '='
-		&& command->args[i + 1])
+		&& command->args[i + 1]
+		&& command->args[i + 1][0] != '='
+		&& ft_strchr(command->args[i + 1], '=') == NULL)
 	{
 		full_arg = ft_strjoin(current_arg, command->args[i + 1]);
 		if (!full_arg)
